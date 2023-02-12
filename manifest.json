@@ -1,15 +1,34 @@
 {
-  "manifest_version": 2,
-  "name": "ChatGPT - Beautiful Equations",
+  "manifest_version": 3,
+  "name": "ChatGPT Beautiful Equations",
+  "description": "Display equations in ChatGPT",
   "version": "1.0",
-  "description": "Visualize equations using MathJax inside of ChatGPT",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
   },
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  }
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "permissions": ["activeTab", "storage", "tabs"]
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/mathjax.js", "scripts/content.js"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://developer.chrome.com/*"
+      ],
+      "run_at": "document_end"
+    }
+  ]
 }
