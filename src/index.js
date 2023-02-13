@@ -11,9 +11,9 @@ class KatexGPT {
 
       if (request == "extension_on") {
         console.log("extension_on");
-        // this.observeDOM();
+        this.observeDOM();
         // this.instructions();
-        this.renderKatex();
+        // this.renderKatex();
       }
       if (request == "extension_off") {
         console.log("extension_off");
@@ -51,20 +51,28 @@ class KatexGPT {
       const renderedExpression = katex.renderToString(sliced);
       element.innerHTML = renderedExpression;
       element.style.textAlign = "center";
+      element.style.fontSize = "1.2em";
     });
   }
 
   observeDOM() {
-    this.renderKatex();
-    const delay = 1000;
-    let timeout = null;
-
-    const observer = new MutationObserver(function () {
-      timeout && clearTimeout(timeout);
-      timeout = setTimeout(() => this.renderKatex(), delay);
+    console.log("observeDOM method");
+    const observer = new MutationObserver(() => {
+      setTimeout(() => this.renderKatex(), 1000);
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+
+    // this.renderKatex();
+    // const delay = 1000;
+    // let timeout = null;
+
+    // const observer = new MutationObserver(function () {
+    //   timeout && clearTimeout(timeout);
+    //   timeout = setTimeout(() => this.renderKatex(), delay);
+    // });
+
+    // observer.observe(document.body, { childList: true, subtree: true });
 
   }
 }
