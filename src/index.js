@@ -2,8 +2,13 @@ const katex = require("katex");
 
 class KatexGPT {
   constructor() {
+    this.observer = new MutationObserver(() => {
+      setTimeout(() => this.renderKatex(), 1000);
+    });
     this.handleRequest();
   }
+
+  observer = null;
 
   handleRequest() {
     chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
@@ -11,12 +16,11 @@ class KatexGPT {
 
       if (request == "extension_on") {
         console.log("extension_on");
-        this.observeDOM();
-        // this.instructions();
-        // this.renderKatex();
+        this.observer.observe(document.body, { childList: true, subtree: true });
       }
       if (request == "extension_off") {
         console.log("extension_off");
+        this.observer.disconnect();
       }
     })
   }
@@ -36,13 +40,8 @@ class KatexGPT {
   }
 
   renderKatex() {
-    console.log("renderKatex method");
     const elements = Array.from(document.querySelectorAll("p"));
-    const katexElements = elements.filter(
-      element => (element.innerHTML.includes("\\(") ||
-        element.innerHTML.includes("\\)") ||
-        element.innerHTML.includes("$$"))
-    )
+    const katexElements = elements.filter(element => element.innerHTML.includes("$$"))
     katexElements.forEach(element => {
       if (!element.innerHTML.includes("$$")) return;
       const expression = element.innerHTML;
@@ -51,30 +50,10 @@ class KatexGPT {
       const renderedExpression = katex.renderToString(sliced);
       element.innerHTML = renderedExpression;
       element.style.textAlign = "center";
-      element.style.fontSize = "1.2em";
+      element.style.fontSize = "1.05em";
     });
   }
 
-  observeDOM() {
-    console.log("observeDOM method");
-    const observer = new MutationObserver(() => {
-      setTimeout(() => this.renderKatex(), 1000);
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // this.renderKatex();
-    // const delay = 1000;
-    // let timeout = null;
-
-    // const observer = new MutationObserver(function () {
-    //   timeout && clearTimeout(timeout);
-    //   timeout = setTimeout(() => this.renderKatex(), delay);
-    // });
-
-    // observer.observe(document.body, { childList: true, subtree: true });
-
-  }
 }
 
 const katexGPT = new KatexGPT();
