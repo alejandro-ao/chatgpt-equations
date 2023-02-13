@@ -21,12 +21,7 @@ chrome.action.onClicked.addListener(async (tab) => {
   });
 
   if (nextState === "ON") {
-    await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ["script.js"],
-    })
     await chrome.tabs.sendMessage(tab.id, "extension_on");
-
   }
   if (nextState === "OFF") {
     await chrome.tabs.sendMessage(tab.id, "extension_off");

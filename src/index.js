@@ -3,7 +3,6 @@ const katex = require("katex");
 class KatexGPT {
   constructor() {
     this.handleRequest();
-    // this.instructions();
   }
 
   handleRequest() {
@@ -12,6 +11,8 @@ class KatexGPT {
 
       if (request == "extension_on") {
         console.log("extension_on");
+        // this.observeDOM();
+        // this.instructions();
         this.renderKatex();
       }
       if (request == "extension_off") {
@@ -35,17 +36,37 @@ class KatexGPT {
   }
 
   renderKatex() {
-    const elements = document.querySelectorAll("*");
-    elements.filter(
-      element => element.innerHTML.includes("\\(") ||
+    console.log("renderKatex method");
+    const elements = Array.from(document.querySelectorAll("p"));
+    const katexElements = elements.filter(
+      element => (element.innerHTML.includes("\\(") ||
         element.innerHTML.includes("\\)") ||
-        element.innerHTML.includes("$$")
-    ).forEach(element => {
+        element.innerHTML.includes("$$"))
+    )
+    katexElements.forEach(element => {
+      if (!element.innerHTML.includes("$$")) return;
       const expression = element.innerHTML;
-      const renderedExpression = katex.renderToString(expression);
+      const sliced = expression.slice(2, -2).replace("/\\/g", "\\\\")
+
+      const renderedExpression = katex.renderToString(sliced);
       element.innerHTML = renderedExpression;
+      element.style.textAlign = "center";
     });
+  }
+
+  observeDOM() {
+    this.renderKatex();
+    const delay = 1000;
+    let timeout = null;
+
+    const observer = new MutationObserver(function () {
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => this.renderKatex(), delay);
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
   }
 }
 
-const mathjax = new KatexGPT();
+const katexGPT = new KatexGPT();

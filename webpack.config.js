@@ -7,6 +7,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'content.js'
   },
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
