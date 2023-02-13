@@ -16,6 +16,7 @@ class KatexGPT {
 
       if (request == "extension_on") {
         console.log("extension_on");
+        this.renderKatex();
         this.observer.observe(document.body, { childList: true, subtree: true });
       }
       if (request == "extension_off") {
