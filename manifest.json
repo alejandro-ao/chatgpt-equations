@@ -23,12 +23,7 @@
   },
   "content_scripts": [
     {
-      "js": ["scripts/mathjax.js"],
-      "matches": ["*://chat.openai.com/*"],
-      "run_at": "document_start"
-    },
-    {
-      "js": ["scripts/content.js"],
+      "js": ["dist/content.js"],
       "matches": ["*://chat.openai.com/*"],
       "run_at": "document_end"
     }

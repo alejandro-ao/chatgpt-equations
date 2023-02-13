@@ -1,22 +1,25 @@
 {
-  "name": "gpt-equations",
+  "name": "empty-project",
   "version": "1.0.0",
   "description": "",
-  "main": "background.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alejandro-ao/chatgpt-equations.git"
-  },
+  "main": "index.js",
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alejandro-ao/chatgpt-equations/issues"
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production"
   },
-  "homepage": "https://github.com/alejandro-ao/chatgpt-equations#readme",
   "dependencies": {
-    "mathjax": "^3.2.2"
+    "katex": "^0.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "prettier": "^2.8.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
