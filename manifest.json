@@ -19,15 +19,17 @@
       "48": "images/icon.png",
       "128": "images/icon.png"
     },
-    "permissions": ["activeTab", "storage", "tabs"]
+    "permissions": ["activeTab", "tabs", "scripting"]
   },
   "content_scripts": [
     {
-      "js": ["scripts/mathjax.js", "scripts/content.js"],
-      "matches": [
-        "https://chat.openai.com/*",
-        "https://developer.chrome.com/*"
-      ],
+      "js": ["scripts/mathjax.js"],
+      "matches": ["*://chat.openai.com/*"],
+      "run_at": "document_start"
+    },
+    {
+      "js": ["scripts/content.js"],
+      "matches": ["*://chat.openai.com/*"],
       "run_at": "document_end"
     }
   ]

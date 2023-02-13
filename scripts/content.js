@@ -1,28 +1,15 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   console.log("request", request);
 
   if (request == "extension_on") {
     console.log("extension_on");
     instructions();
-    registerScript();
     enabletex();
   }
   if (request == "extension_off") {
     console.log("extension_off");
-
   }
-});
-
-async function registerScript() {
-  try {
-    await chrome.scripting.registerContentScripts({
-      js: [{ file: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" }],
-      runAt: "document_end",
-    });
-  } catch (error) {
-    console.log("error", error);
-  }
-}
+})
 
 function instructions() {
   var instructions = `

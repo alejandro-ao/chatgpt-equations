@@ -1,0 +1,22 @@
+{
+  "name": "gpt-equations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alejandro-ao/chatgpt-equations.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alejandro-ao/chatgpt-equations/issues"
+  },
+  "homepage": "https://github.com/alejandro-ao/chatgpt-equations#readme",
+  "dependencies": {
+    "mathjax": "^3.2.2"
+  }
+}
