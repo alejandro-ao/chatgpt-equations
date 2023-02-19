@@ -27,15 +27,9 @@ class KatexGPT {
   }
 
   instructions() {
-    var instructions = `
-      From now on, if you need to write a mathematical expression, use katex notation and follow these rules:
-      1. If it is a block equation, wrap it with double dollar signs. Like this:
-      $$e=mc^{2}$$
-      2. If it is an inline equation, use the two backslash and parenthesis notation of katex, like this: \\(e^{i \\\pi}-1=0\\).
-      Now give me an example of both cases to see if you understood correctly.
-    `;
+    const instructions = "From now on, if you need to write a mathematical expression, use katex notation and follow these rules:\n1. If it is a block equation, wrap it with double dollar signs. Like this:\n$$e=mc^{2}$$\n2. If it is an inline equation, use the two backslash and parenthesis notation of katex, like this: \\(e^{i \\\pi}-1=0\\).";
 
-    var inputElement = document.querySelector("textarea");
+    const inputElement = document.querySelector("textarea");
     inputElement.value = instructions;
     document.querySelector("textarea~button").click();
   }
@@ -44,6 +38,7 @@ class KatexGPT {
     const elements = Array.from(document.querySelectorAll("p"));
     const katexElements = elements.filter(element => element.innerHTML.includes("$$"))
     katexElements.forEach(element => {
+      // todo: return if katex is not the only thing in p element
       if (!element.innerHTML.includes("$$")) return;
       const expression = element.innerHTML;
       const sliced = expression.slice(2, -2).replace("/\\/g", "\\\\")
