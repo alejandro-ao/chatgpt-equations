@@ -19,7 +19,8 @@
       "48": "images/icon.png",
       "128": "images/icon.png"
     },
-    "permissions": ["activeTab", "tabs", "scripting"]
+    "permissions": ["activeTab", "tabs", "scripting"],
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
