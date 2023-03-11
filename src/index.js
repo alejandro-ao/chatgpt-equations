@@ -57,10 +57,10 @@
 chrome.runtime.onMessage.addListener(async (request, sender, response) => {
   console.log("request", request);
 
-  if (request == "extension_on") {
-    console.log("extension_on");
+  if (request.action == "PROMPT") {
+    console.log("prompting...");
   }
-  if (request == "extension_off") {
-    console.log("extension_off");
+  if (request.action == "RENDER") {
+    console.log("rendering...");
   }
 })
