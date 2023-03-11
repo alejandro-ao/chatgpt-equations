@@ -6,10 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChatGPT Equations</title>
   </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: transparent;
+    }
+    #app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+      padding: 1rem;
+
+      color: #333;
+    }
+    section.header {
+      max-width: 400px;
+    }
+    section.header img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      margin-inline: auto;
+    }
+    section.buttons {
+      width: 100%;
+    }
+
+    button {
+      margin: 0.2rem 0;
+      padding: 1rem 2rem;
+      width: 100%;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background-color: #343541;
+      color: #fff;
+    }
+    button:hover {
+      box-shadow: 0 0 0.5rem #545567;
+    }
+  </style>
   <body>
     <div id="app">
-      <button id="btn-prompt">PROMPT!</button>
-      <button id="btn-render">RENDER!</button>
+      <section class="header">
+        <img src="./images/logo-popup.png" alt="" />
+      </section>
+      <section class="buttons">
+        <button id="btn-prompt">Prompt Latex</button>
+        <button id="btn-render">Render Latex</button>
+      </section>
     </div>
     <script type="module" src="popup.js"></script>
   </body>
