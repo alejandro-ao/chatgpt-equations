@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ChatGPT Equation Renderer",
-  "description": "Display equations in ChatGPT",
+  "description": "Display equations in ChatGPT using Latex notation",
   "version": "1.0",
   "icons": {
     "16": "images/icon.png",
