@@ -11,26 +11,27 @@ class KatexGPT {
   observer = null;
 
   handleRequest() {
-    chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-      console.log("request", request);
+    chrome.runtime.onMessage.addListener(async (request, sender, response) => {
+      console.log(request);
 
-      if (request == "extension_on") {
-        console.log("extension_on");
+      if (request.action == "PROMPT") {
+        this.submitPrompt()
+      }
+      if (request.action == "RENDER") {
         this.renderKatex();
         this.observer.observe(document.body, { childList: true, subtree: true });
       }
-      if (request == "extension_off") {
-        console.log("extension_off");
+      if (request.action == "STOP_RENDER") {
         this.observer.disconnect();
       }
     })
   }
 
-  instructions() {
-    const instructions = "From now on, if you need to write a mathematical expression, use katex notation and follow these rules:\n1. If it is a block equation, wrap it with double dollar signs. Like this:\n$$e=mc^{2}$$\n2. If it is an inline equation, use the two backslash and parenthesis notation of katex, like this: \\(e^{i \\\pi}-1=0\\).";
+  submitPrompt() {
+    const prompt = "From now on, if you need to write a mathematical expression, use katex notation and follow these rules:\n1. If it is a block equation, display it in a single P element and wrap it with double dollar signs like this:\n\n$$e=mc^{2}$$\n\n2. If it is an inline equation, use the two backslash and parenthesis notation of katex, like this: \\(e^{i \\\pi}-1=0\\).\n\nCan you give me an example of a block equation to see that you understand?";
 
     const inputElement = document.querySelector("textarea");
-    inputElement.value = instructions;
+    inputElement.value = prompt;
     document.querySelector("textarea~button").click();
   }
 
@@ -39,7 +40,7 @@ class KatexGPT {
     const katexElements = elements.filter(element => element.innerHTML.includes("$$"))
     katexElements.forEach(element => {
       // todo: return if katex is not the only thing in p element
-      if (!element.innerHTML.includes("$$")) return;
+      if (!element.innerHTML.startsWith("$$")) return;
       const expression = element.innerHTML;
       const sliced = expression.slice(2, -2).replace("/\\/g", "\\\\")
 
