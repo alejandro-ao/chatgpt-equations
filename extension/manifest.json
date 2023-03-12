@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ChatGPT Beautiful Equations",
+  "name": "ChatGPT Equation Renderer",
   "description": "Display equations in ChatGPT",
   "version": "1.0",
   "icons": {
@@ -24,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "js": ["content/main.js"],
+      "js": ["./content.js"],
       "matches": ["*://chat.openai.com/*"],
       "run_at": "document_end"
     }

@@ -1,9 +1,8 @@
 
 .cache/
 coverage/
-dist/*
-content/*
-!dist/index.html
+extension/content.js
+extension/content.js.map
 node_modules/
 *.log
 

@@ -4,8 +4,8 @@ const path = require('path');
 const config = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'content'),
-    filename: 'main.js'
+    path: path.resolve(__dirname, 'extension'),
+    filename: 'content.js'
   },
   devtool: 'cheap-module-source-map',
   module: {
