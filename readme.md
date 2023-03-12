@@ -18,9 +18,6 @@ Clicking "Prompt LaTeX" will request ChatGPT to use LaTeX notation for any equat
 
 Once ChatGPT has understood that it has to use LaTeX notation for equations, click "Render LaTeX" to automatically render any mathematical expressions in your responses that use LaTeX notation. While this function is active, it will continue to render any new equations that appear in new ChatGPT responses.
 
-## Support
-If you have any questions or issues with the ChatGPT Equation Renderer Chrome Extension, please contact us at support@chatgpt.com.
-
 
 ## Run Locally
 
