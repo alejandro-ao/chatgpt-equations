@@ -2,27 +2,47 @@ const katex = require("katex");
 
 class KatexGPT {
   constructor() {
-    this.observer = new MutationObserver(() => {
-      setTimeout(() => this.renderKatex(), 1000);
-    });
     this.handleRequest();
+    this.enableObserver();
   }
 
-  observer = null;
+  enableObserver() {
+    const rootElement = document.querySelector("body"); // Replace "root" with your own root element ID
+
+    const observer = new MutationObserver((mutationsList, observer) => {
+      this.createCopyEquationButtons();
+    });
+
+    const observerConfig = {
+      childList: true,
+      subtree: true,
+    };
+
+    observer.observe(rootElement, observerConfig);
+
+  }
+
+  createCopyEquationButtons() {
+    const equations = Array.from(document.querySelectorAll(".katex"));
+    equations.forEach(equation => {
+      if (equation.querySelector("button")) return;
+      const button = document.createElement("button");
+
+      button.innerHTML = "Copy LaTeX";
+      button.classList.add("copy-equation");
+      button.addEventListener("click", () => {
+        const text = equation.querySelector(".katex-mathml annotation").innerHTML;
+        navigator.clipboard.writeText(text);
+      });
+
+      equation.appendChild(button);
+    });
+  }
 
   handleRequest() {
     chrome.runtime.onMessage.addListener(async (request, sender, response) => {
-      console.log(request);
-
       if (request.action == "PROMPT") {
         this.submitPrompt()
-      }
-      if (request.action == "RENDER") {
-        this.renderKatex();
-        this.observer.observe(document.body, { childList: true, subtree: true });
-      }
-      if (request.action == "STOP_RENDER") {
-        this.observer.disconnect();
       }
     })
   }
@@ -32,14 +52,15 @@ class KatexGPT {
 
     const inputElement = document.querySelector("textarea");
     inputElement.value = prompt;
-    document.querySelector("textarea~button").click();
+    const submitButton = document.querySelector("textarea~button");
+    submitButton.disabled = false;
+    submitButton.click();
   }
 
   renderKatex() {
     const elements = Array.from(document.querySelectorAll("p"));
     const katexElements = elements.filter(element => element.innerHTML.includes("$$"))
     katexElements.forEach(element => {
-      // todo: return if katex is not the only thing in p element
       if (!element.innerHTML.startsWith("$$")) return;
       const expression = element.innerHTML;
       const sliced = expression.slice(2, -2).replace("/\\/g", "\\\\")
