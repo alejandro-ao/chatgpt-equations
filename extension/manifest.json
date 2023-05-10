@@ -19,7 +19,7 @@
       "48": "images/icon.png",
       "128": "images/icon.png"
     },
-    "permissions": ["tabs"],
+    "permissions": ["activeTab"],
     "default_popup": "popup.html"
   },
   "content_scripts": [
@@ -27,6 +27,11 @@
       "js": ["./content.js"],
       "matches": ["*://chat.openai.com/*"],
       "run_at": "document_end"
+    },
+    {
+      "css": ["./content.css"],
+      "matches": ["*://chat.openai.com/*"],
+      "run_at": "document_start"
     }
   ]
 }
