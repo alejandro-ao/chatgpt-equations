@@ -1,4 +1,5 @@
-// chrome.runtime.onInstalled.addListener(() => {
-//   chrome.action.setBadgeText({ text: "OFF", });
-//   chrome.action.setBadgeBackgroundColor({ color: "#f44336" });
-// });
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "update") {
+    chrome.tabs.create({ url: "https://alejandro-ao.com/gpt-equations-update/" });
+  }
+});

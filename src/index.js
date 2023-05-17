@@ -7,26 +7,18 @@ class KatexGPT {
   }
 
   enableObserver() {
-    setInterval(this.createCopyEquationButtons, 5000);
+    setInterval(this.createCopyEquationButtons, 1000);
   }
 
   createCopyEquationButtons() {
-    const equations = Array.from(document.querySelectorAll("p > span.math:only-child > .katex"));
-    console.log("equations: ", equations);
+    const equations = Array.from(document.querySelectorAll(".katex"));
     equations.forEach(equation => {
-      if (equation.querySelector("button.copy-equation")) return;
-      const button = document.createElement("button");
-
-      button.innerHTML = `📋`;
-
-      button.alt = "Copy equation";
-      button.classList.add("copy-equation");
-      button.addEventListener("click", () => {
+      equation.style.cursor = "pointer";
+      equation.classList.add("copyable-equation");
+      equation.addEventListener("click", () => {
         const text = equation.querySelector(".katex-mathml annotation").innerHTML;
         navigator.clipboard.writeText(text);
       });
-
-      equation.appendChild(button);
     });
   }
 

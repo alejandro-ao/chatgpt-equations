@@ -1,19 +1,23 @@
-.copy-equation {
-  margin-left: 1em;
-  /* background-color: #343541; */
+.copyable-equation {
+  position: relative;
+}
+.copyable-equation:hover {
+  box-shadow: 0 0 0 1px #343541;
+}
+.copyable-equation:hover::after {
+  content: "Copy";
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(100%, -100%);
+  background-color: #343541;
   color: white;
-  border: solid 1px #343541;
+  padding: 0.5em 1em;
   border-radius: 5px;
-  padding: 0.6em 1em;
-  cursor: pointer;
   font-size: 0.6em;
   font-family: sans-serif;
-}
-
-.copy-equation:hover {
-  background-color: #2c2c3a;
-}
-
-.copy-equation:active {
-  background-color: #242432;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
