@@ -44,7 +44,7 @@ button:hover {
   box-shadow: 0 0 0.5rem #545567;
 }
 footer {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   width: 100%;
   text-align: center;
   display: flex;
@@ -79,4 +79,8 @@ footer div .icon {
   height: 1rem;
   margin-inline: 0.2rem;
   vertical-align: bottom;
+}
+
+footer div .icon:hover {
+  opacity: 0.8;
 }
