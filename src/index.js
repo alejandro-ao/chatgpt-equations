@@ -7,28 +7,20 @@ class KatexGPT {
   }
 
   enableObserver() {
-    const rootElement = document.querySelector("body"); // Replace "root" with your own root element ID
-
-    const observer = new MutationObserver((mutationsList, observer) => {
-      this.createCopyEquationButtons();
-    });
-
-    const observerConfig = {
-      childList: true,
-      subtree: true,
-    };
-
-    observer.observe(rootElement, observerConfig);
-
+    setInterval(this.createCopyEquationButtons, 5000);
   }
 
   createCopyEquationButtons() {
-    const equations = Array.from(document.querySelectorAll(".katex"));
+    const equations = Array.from(document.querySelectorAll("p > span.math:only-child > .katex"));
+    console.log("equations: ", equations);
     equations.forEach(equation => {
-      if (equation.querySelector("button")) return;
+      if (equation.querySelector("button.copy-equation")) return;
       const button = document.createElement("button");
 
-      button.innerHTML = "Copy LaTeX";
+      // Use the full URL of the SVG file as the src attribute of the <img> tag
+      button.innerHTML = `📋`;
+
+      button.alt = "Copy equation";
       button.classList.add("copy-equation");
       button.addEventListener("click", () => {
         const text = equation.querySelector(".katex-mathml annotation").innerHTML;
