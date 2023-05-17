@@ -17,7 +17,6 @@ class KatexGPT {
       if (equation.querySelector("button.copy-equation")) return;
       const button = document.createElement("button");
 
-      // Use the full URL of the SVG file as the src attribute of the <img> tag
       button.innerHTML = `📋`;
 
       button.alt = "Copy equation";
