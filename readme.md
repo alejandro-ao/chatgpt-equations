@@ -3,12 +3,16 @@
 The ChatGPT Equation Renderer Chrome Extension is a tool that allows users to easily render equations in ChatGPT using LaTeX notation. The extension uses KaTeX, a fast and efficient LaTeX renderer, to ensure that equations are displayed accurately and quickly.
 
 ## Installation
-To install the ChatGPT Equation Renderer Chrome Extension, follow these steps:
+This extension is [available in the Chrome Web Store](https://chrome.google.com/webstore/detail/chatgpt-equation-renderer/nkkkaendbndanjjndfpebmekhgdjlhkh?hl).
 
-- Open Google Chrome and navigate to the Chrome Web Store.
-- Search for "ChatGPT Equations" in the search bar.
-- Click "Add to Chrome" to add the extension to your browser.
-- Once the installation is complete, you will see the ChatGPT Equation Renderer icon in your browser's toolbar.
+To install the ChatGPT Equation Renderer Chrome Extension manually from this repository, follow these steps:
+
+- Select the branch "build"
+- Download the "extension" folder (it contains the already rendered extension) and place it somewhere safe
+- Open Chrome, enable developer tools (upper right) and click on "Load unpacked"
+- Select the extension folder that you downloaded
+- You should be good to go
+
 
 ## Usage
 

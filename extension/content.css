@@ -1,0 +1,19 @@
+.copy-equation {
+  margin-left: 1em;
+  background-color: #343541;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-family: sans-serif;
+}
+
+.copy-equation:hover {
+  background-color: #2c2c3a;
+}
+
+.copy-equation:active {
+  background-color: #242432;
+}
