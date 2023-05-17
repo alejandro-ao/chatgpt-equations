@@ -84,3 +84,33 @@ footer div .icon {
 footer div .icon:hover {
   opacity: 0.8;
 }
+
+.footer-button {
+  position: relative;
+}
+
+.footer-button:hover::after {
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  z-index: 1;
+  transform: translate(120%, -135%);
+  background-color: #343541;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  width: 5em
+}
+
+.github-button:hover::after {
+  content: "Contribute";
+}
+
+.question-button:hover::after {
+  content: "Support";
+}
+
+.coffee-button:hover::after {
+  content: "Buy me a coffee";
+}

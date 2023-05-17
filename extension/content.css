@@ -5,7 +5,7 @@
   box-shadow: 0 0 0 1px #343541;
 }
 .copyable-equation:hover::after {
-  content: "Copy";
+  content: "Click to copy";
   position: absolute;
   top: 0;
   right: 0;
