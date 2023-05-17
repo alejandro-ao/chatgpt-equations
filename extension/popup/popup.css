@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: transparent;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  padding: 1rem;
+
+  color: #333;
+}
+section.header {
+  max-width: 400px;
+}
+section.header img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin-inline: auto;
+}
+section.buttons {
+  width: 100%;
+}
+
+button {
+  margin: 0.2rem 0;
+  padding: 1rem 2rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: #343541;
+  color: #fff;
+}
+button:hover {
+  box-shadow: 0 0 0.5rem #545567;
+}
+footer {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+footer hr {
+  margin: 1rem 0;
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+footer .links {
+  text-align: center;
+  display: flex;
+  gap: 0.5rem;
+}
+footer div {
+  font-size: 0.8rem;
+}
+footer div a {
+  color: #7b7b7b;
+  text-decoration: none;
+}
+footer div a:hover {
+  text-decoration: underline;
+}
+footer div .icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-inline: 0.2rem;
+  vertical-align: bottom;
+}

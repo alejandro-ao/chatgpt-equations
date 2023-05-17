@@ -1,8 +1,8 @@
 .copy-equation {
   margin-left: 1em;
-  background-color: #343541;
+  /* background-color: #343541; */
   color: white;
-  border: none;
+  border: solid 1px #343541;
   border-radius: 5px;
   padding: 0.5em 1em;
   cursor: pointer;
