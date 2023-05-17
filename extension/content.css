@@ -17,3 +17,27 @@
 .copy-equation:active {
   background-color: #242432;
 }
+
+.copyable-equation {
+  position: relative;
+}
+.copyable-equation:hover {
+  box-shadow: 0 0 0 1px #343541;
+}
+.copyable-equation:hover::after {
+  content: "Copy";
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(100%, -100%);
+  background-color: #343541;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 0.6em;
+  font-family: sans-serif;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
